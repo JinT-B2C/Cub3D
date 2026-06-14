@@ -6,7 +6,7 @@
 /*   By: torasolo <torasolo@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 22:23:04 by torasolo          #+#    #+#             */
-/*   Updated: 2026/06/10 23:56:50 by torasolo         ###   ########.fr       */
+/*   Updated: 2026/06/13 12:26:45 by torasolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,15 @@ static int	process_point(t_fill *fill, t_point cur)
 {
 	if (is_out_of_bounds(fill, cur.x, cur.y))
 		return (0);
-	if (fill->visited[cur.y][cur.x] == 'V'
-		|| fill->conf->map[cur.y][cur.x] == '1')
-		return (1);
 	if (fill->conf->map[cur.y][cur.x] == ' ' && !is_space_open(fill, cur.x,
 			cur.y))
 	{
 		printf("Map is not enclosed at (%d, %d)\n", cur.x, cur.y);
 		return (0);
 	}
+	if (fill->visited[cur.y][cur.x] == 'V'
+		|| fill->conf->map[cur.y][cur.x] == '1')
+		return (1);
 	fill->visited[cur.y][cur.x] = 'V';
 	push_point(fill, cur.x + 1, cur.y);
 	push_point(fill, cur.x - 1, cur.y);

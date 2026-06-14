@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_config.c                                      :+:      :+:    :+:   */
+/*   init_conf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: torasolo <torasolo@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 03:34:54 by torasolo          #+#    #+#             */
-/*   Updated: 2026/06/11 03:35:08 by torasolo         ###   ########.fr       */
+/*   Updated: 2026/06/14 17:49:32 by torasolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,21 @@ void	init_config(t_conf *conf)
 	conf->player_x = -1;
 	conf->player_y = -1;
 	conf->player_or = '\0';
+}
+
+int	is_duplicate(const char *line, t_conf *conf)
+{
+	if (ft_strncmp(line, "NO", 2) == 0 && conf->tex_n)
+		return (1);
+	if (ft_strncmp(line, "SO", 2) == 0 && conf->tex_s)
+		return (1);
+	if (ft_strncmp(line, "WE", 2) == 0 && conf->tex_w)
+		return (1);
+	if (ft_strncmp(line, "EA", 2) == 0 && conf->tex_e)
+		return (1);
+	if (line[0] == 'F' && conf->floor_set)
+		return (1);
+	if (line[0] == 'C' && conf->sky_set)
+		return (1);
+	return (0);
 }

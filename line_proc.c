@@ -6,7 +6,7 @@
 /*   By: torasolo <torasolo@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/12 06:35:36 by frazakar          #+#    #+#             */
-/*   Updated: 2026/06/11 03:38:13 by torasolo         ###   ########.fr       */
+/*   Updated: 2026/06/14 17:49:57 by torasolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int	parse_cub_file(const char *path, t_conf *conf)
 	res = process_lines(lines, conf, &map_start);
 	if (res == 0)
 		return (err_exit(lines, conf,
-				"Invalid header: duplicate,unknown id, or incomplete"));
+				"Invalid header: duplicate, unknown id, or incomplete"));
 	if (res == -1)
 		return (err_exit(lines, conf, "Invalid content after map start"));
 	if (map_start == -1)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frazakar <frazakar@student.42antananari    +#+  +:+       +#+        */
+/*   By: torasolo <torasolo@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/13 02:20:05 by frazakar          #+#    #+#             */
-/*   Updated: 2026/06/06 13:56:12 by frazakar         ###   ########.fr       */
+/*   Updated: 2026/06/14 17:49:11 by torasolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

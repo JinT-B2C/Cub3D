@@ -6,7 +6,7 @@
 /*   By: torasolo <torasolo@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/12 06:35:32 by frazakar          #+#    #+#             */
-/*   Updated: 2026/06/11 03:52:20 by torasolo         ###   ########.fr       */
+/*   Updated: 2026/06/14 17:55:07 by torasolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,16 @@ static void	init_mlx(t_game *game)
 {
 	game->mlx = mlx_init();
 	if (!game->mlx)
-		game_error("Error\nFailed to init mlx", game);
+		game_error("Error: Failed to init mlx", game);
 	game->width = DEFAULT_WIDTH;
 	game->height = DEFAULT_HEIGHT;
 	game->win = mlx_new_window(game->mlx, game->width, game->height,
 			"Ping_Pong");
 	if (!game->win)
-		game_error("Error\nFailed to create window", game);
+		game_error("Error: Failed to create window", game);
 	game->img.img = mlx_new_image(game->mlx, game->width, game->height);
 	if (!game->img.img)
-		game_error("Error\nFailed to create image buffer", game);
+		game_error("Error: Failed to create image buffer", game);
 }
 
 int	init_game(t_game *game, const char *map_path)
@@ -67,7 +67,7 @@ int	init_game(t_game *game, const char *map_path)
 	game->img.addr = mlx_get_data_addr(game->img.img, &game->img.bits_per_pixel,
 			&game->img.line_length, &game->img.endian);
 	if (!init_textures(game))
-		game_error("Error\nFailed to load textures", game);
+		game_error("Error: Failed to load textures", game);
 	game->player_px = game->conf.player_x + 0.5;
 	game->player_py = game->conf.player_y + 0.5;
 	set_player_angle(game);

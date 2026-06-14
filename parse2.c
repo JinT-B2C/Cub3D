@@ -6,11 +6,13 @@
 /*   By: torasolo <torasolo@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 00:01:09 by torasolo          #+#    #+#             */
-/*   Updated: 2026/06/11 03:21:05 by torasolo         ###   ########.fr       */
+/*   Updated: 2026/06/14 17:48:09 by torasolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cub3D.h"
+#include "lib/libft.h"
+#include <stdio.h>
 
 static int	set_it(char **s, const char *line)
 {
@@ -33,23 +35,6 @@ int	try_set_texture(const char *line, t_conf *conf)
 	return (0);
 }
 
-int	is_duplicate(const char *line, t_conf *conf)
-{
-	if (ft_strncmp(line, "NO", 2) == 0 && conf->tex_n)
-		return (1);
-	if (ft_strncmp(line, "SO", 2) == 0 && conf->tex_s)
-		return (1);
-	if (ft_strncmp(line, "WE", 2) == 0 && conf->tex_w)
-		return (1);
-	if (ft_strncmp(line, "EA", 2) == 0 && conf->tex_e)
-		return (1);
-	if (line[0] == 'F' && conf->floor_set)
-		return (1);
-	if (line[0] == 'C' && conf->sky_set)
-		return (1);
-	return (0);
-}
-
 int	parse_rgb_values(char **rgb, t_conf *conf, char c)
 {
 	t_rgb	*color;
@@ -67,6 +52,17 @@ int	parse_rgb_values(char **rgb, t_conf *conf, char c)
 		&& color->b >= 0 && color->b <= 255);
 }
 
+static int	check_rgb_format(char *s)
+{
+	int	i;
+
+	i = -1;
+	while (s[++i])
+		if (!ft_isdigit(s[i]))
+			return (0);
+	return (1);
+}
+
 void	parse_color(const char *line, t_conf *conf)
 {
 	char		**rgb;
@@ -77,6 +73,11 @@ void	parse_color(const char *line, t_conf *conf)
 	rgb = ft_split(values, ',');
 	if (!rgb)
 		return ;
+	if (!check_rgb_format(rgb[2]))
+	{
+		free_lines(rgb);
+		return ;
+	}
 	if (parse_rgb_values(rgb, conf, line[0]))
 	{
 		if (line[0] == 'F')
